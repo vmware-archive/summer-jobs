@@ -1,10 +1,10 @@
-require "sinatra"
+require "sinatra/base"
 require "json"
 require "hashie/mash"
 require "sinatra/url_for"
+require "cloudfoundry/environment"
 require "redis"
 require "logger"
-require 'haml'
 
 require_relative "lib/DOLDataSDK"
 
@@ -23,8 +23,9 @@ class SummerJobsApp < Sinatra::Base
 
   def initialize
     super
+
     @logger = AppConfig.logger
-    @redis = Redis.new(LOCAL_REDIS)
+    @redis = Redis.new(CloudFoundry::Environment.redis_cnx || LOCAL_REDIS)
     @logger.info("REDIS CONFIGURED")
 
     begin
@@ -65,7 +66,7 @@ class SummerJobsApp < Sinatra::Base
   before do
     @appid = ENV['facebook_app_id']
     @description = "A new call-to-action for businesses, non-profits, and government to provide pathways to employment for low-income and disconnected youth in the summer of 2012"
-    @context = DOL::DataContext.new('http://api.dol.gov', ENV['USDOL_TOKEN'], ENV['USDOL_SECRET'])
+    @context = DOL::DataContext.new('http://api.dol.gov', ENV['usdol_token'], ENV['usdol_secret'])
     @dol_request = DOL::DataRequest.new(@context)
     @dol_request.redis = @redis
   end

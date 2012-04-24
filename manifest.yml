@@ -1,0 +1,16 @@
+---
+applications:
+  .:
+    name: summerjobs
+    url: ${name}.${target-base}
+    framework:
+      name: rack
+      info:
+        mem: 128M
+        description: Rack Application
+        exec:
+    mem: 128M
+    instances: 1
+    services:
+      redis-www-cache:
+        type: redis
