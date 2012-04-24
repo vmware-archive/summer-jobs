@@ -2,10 +2,10 @@ GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.2.7)
-    cloudfoundry-env (0.0.5)
-      hashie
+    daemons (1.1.4)
     emk-sinatra-url-for (0.2.1)
       sinatra (>= 0.9.1.1)
+    eventmachine (0.12.10)
     haml (3.1.4)
     hashie (1.2.0)
     interact (0.4.2)
@@ -26,6 +26,10 @@ GEM
       rack-protection (~> 1.2)
       tilt (~> 1.3, >= 1.3.3)
     terminal-table (1.4.5)
+    thin (1.3.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     tilt (1.3.3)
     uuidtools (2.1.2)
     vmc (0.3.16.beta.5)
@@ -41,7 +45,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cloudfoundry-env (~> 0.0.5)
   emk-sinatra-url-for
   haml
   hashie
@@ -50,4 +53,5 @@ DEPENDENCIES
   redis
   ruby-hmac
   sinatra
+  thin
   vmc (~> 0.3.16.beta.5)
