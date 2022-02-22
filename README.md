@@ -1,3 +1,6 @@
+# This repository is no longer actively maintained by VMware, Inc.
+
+
 ## Overview
 
 This is an app to help promote the White House's Code Sprint for the Summer Jobs API
